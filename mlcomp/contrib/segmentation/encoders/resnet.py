@@ -86,8 +86,7 @@ resnet_encoders = {
         'encoder': ResNetEncoder,
         'pretrained_settings': {
             'imagenet': {
-                'url': 'https://download.pytorch.org/'
-                       'models/resnext50_32x4d-7cdf4587.pth',
+                'url': 'https://download.pytorch.org/models/resnext50_32x4d-7cdf4587.pth',
                 'input_space': 'RGB',
                 'input_size': [3, 224, 224],
                 'input_range': [0, 1],
@@ -109,8 +108,7 @@ resnet_encoders = {
         'encoder': ResNetEncoder,
         'pretrained_settings': {
             'imagenet': {
-                'url': 'https://download.pytorch.org/'
-                       'models/resnext101_32x8d-8ba56ff5.pth',
+                'url': 'https://download.pytorch.org/models/resnext101_32x8d-8ba56ff5.pth',
                 'input_space': 'RGB',
                 'input_size': [3, 224, 224],
                 'input_range': [0, 1],
@@ -119,8 +117,7 @@ resnet_encoders = {
                 'num_classes': 1000
             },
             'instagram': {
-                'url': 'https://download.pytorch.org/'
-                       'models/ig_resnext101_32x8-c38310e5.pth',
+                'url': 'https://download.pytorch.org/models/ig_resnext101_32x8-c38310e5.pth',
                 'input_space': 'RGB',
                 'input_size': [3, 224, 224],
                 'input_range': [0, 1],
@@ -141,9 +138,8 @@ resnet_encoders = {
     'resnext101_32x16d': {
         'encoder': ResNetEncoder,
         'pretrained_settings': {
-            'instagram': {
-                'url': 'https://download.pytorch.org/'
-                       'models/ig_resnext101_32x16-c6f796b0.pth',
+            'instagram':{
+                'url': 'https://download.pytorch.org/models/ig_resnext101_32x16-c6f796b0.pth',
                 'input_space': 'RGB',
                 'input_size': [3, 224, 224],
                 'input_range': [0, 1],
@@ -165,8 +161,7 @@ resnet_encoders = {
         'encoder': ResNetEncoder,
         'pretrained_settings': {
             'instagram': {
-                'url': 'https://download.pytorch.org/'
-                       'models/ig_resnext101_32x32-e4b90b00.pth',
+                'url': 'https://download.pytorch.org/models/ig_resnext101_32x32-e4b90b00.pth',
                 'input_space': 'RGB',
                 'input_size': [3, 224, 224],
                 'input_range': [0, 1],
@@ -188,8 +183,7 @@ resnet_encoders = {
         'encoder': ResNetEncoder,
         'pretrained_settings': {
             'instagram': {
-                'url': 'https://download.pytorch.org/'
-                       'models/ig_resnext101_32x48-3e41cc8a.pth',
+                'url': 'https://download.pytorch.org/models/ig_resnext101_32x48-3e41cc8a.pth',
                 'input_space': 'RGB',
                 'input_size': [3, 224, 224],
                 'input_range': [0, 1],

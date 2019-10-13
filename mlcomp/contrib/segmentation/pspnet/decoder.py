@@ -12,15 +12,13 @@ def _upsample(x, size):
 
 class PyramidStage(nn.Module):
 
-    def __init__(self, in_channels, out_channels, pool_size,
-                 use_bathcnorm=True):
+    def __init__(self, in_channels, out_channels, pool_size, use_bathcnorm=True):
         super().__init__()
         if pool_size == 1:
             use_bathcnorm = False
         self.pool = nn.Sequential(
             nn.AdaptiveAvgPool2d(output_size=(pool_size, pool_size)),
-            Conv2dReLU(in_channels, out_channels, (1, 1),
-                       use_batchnorm=use_bathcnorm)
+            Conv2dReLU(in_channels, out_channels, (1, 1), use_batchnorm=use_bathcnorm)
         )
 
     def forward(self, x):
@@ -35,8 +33,7 @@ class PSPModule(nn.Module):
         super().__init__()
 
         self.stages = nn.ModuleList([
-            PyramidStage(in_channels, in_channels // len(sizes), size,
-                         use_bathcnorm=use_bathcnorm) for size in sizes
+            PyramidStage(in_channels, in_channels // len(sizes), size, use_bathcnorm=use_bathcnorm) for size in sizes
         ])
 
     def forward(self, x):
@@ -107,9 +104,8 @@ class PSPDecoder(Model):
         elif self.downsample_factor == 16:
             return xs[1]
         else:
-            raise ValueError(
-                'Downsample factor should bi in [4, 8, 16], got {}'
-                .format(self.downsample_factor))
+            raise ValueError('Downsample factor should bi in [4, 8, 16], got {}'
+                             .format(self.downsample_factor))
 
     def forward(self, x):
 

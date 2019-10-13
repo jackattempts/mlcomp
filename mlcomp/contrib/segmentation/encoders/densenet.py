@@ -24,8 +24,7 @@ class DenseNetEncoder(DenseNet):
     def initialize(self):
         for m in self.modules():
             if isinstance(m, nn.Conv2d):
-                nn.init.kaiming_normal_(m.weight, mode='fan_out',
-                                        nonlinearity='relu')
+                nn.init.kaiming_normal_(m.weight, mode='fan_out', nonlinearity='relu')
             elif isinstance(m, nn.BatchNorm2d):
                 nn.init.constant_(m.weight, 1)
                 nn.init.constant_(m.bias, 0)
@@ -55,8 +54,7 @@ class DenseNetEncoder(DenseNet):
 
     def load_state_dict(self, state_dict):
         pattern = re.compile(
-            r'^(.*denselayer\d+\.(?:norm|relu|conv))'
-            r'\.((?:[12])\.(?:weight|bias|running_mean|running_var))$')
+            r'^(.*denselayer\d+\.(?:norm|relu|conv))\.((?:[12])\.(?:weight|bias|running_mean|running_var))$')
         for key in list(state_dict.keys()):
             res = pattern.match(key)
             if res:

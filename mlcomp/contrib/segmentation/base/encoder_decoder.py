@@ -17,27 +17,23 @@ class EncoderDecoder(Model):
         elif activation == 'sigmoid':
             self.activation = nn.Sigmoid()
         else:
-            raise ValueError(
-                'Activation should be "sigmoid"/"softmax"/callable/None')
+            raise ValueError('Activation should be "sigmoid"/"softmax"/callable/None')
 
     def forward(self, x):
-        """Sequentially pass `x` trough model`s
-         `encoder` and `decoder` (return logits!)"""
+        """Sequentially pass `x` trough model`s `encoder` and `decoder` (return logits!)"""
         x = self.encoder(x)
         x = self.decoder(x)
         return x
 
     def predict(self, x):
         """Inference method. Switch model to `eval` mode, call `.forward(x)`
-        and apply activation function
-         (if activation is not `None`) with `torch.no_grad()`
+        and apply activation function (if activation is not `None`) with `torch.no_grad()`
 
         Args:
             x: 4D torch tensor with shape (batch_size, channels, height, width)
 
         Return:
-            prediction: 4D torch tensor with shape
-            (batch_size, classes, height, width)
+            prediction: 4D torch tensor with shape (batch_size, classes, height, width)
 
         """
         if self.training:

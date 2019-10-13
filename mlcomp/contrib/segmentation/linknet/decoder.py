@@ -6,13 +6,10 @@ from ..base.model import Model
 
 class TransposeX2(nn.Module):
 
-    def __init__(self, in_channels, out_channels, use_batchnorm=True,
-                 **batchnorm_params):
+    def __init__(self, in_channels, out_channels, use_batchnorm=True, **batchnorm_params):
         super().__init__()
         layers = []
-        layers.append(
-            nn.ConvTranspose2d(in_channels, out_channels, kernel_size=4,
-                               stride=2, padding=1))
+        layers.append(nn.ConvTranspose2d(in_channels, out_channels, kernel_size=4, stride=2, padding=1))
         if use_batchnorm:
             layers.append(nn.BatchNorm2d(out_channels, **batchnorm_params))
         layers.append(nn.ReLU(inplace=True))
@@ -28,12 +25,9 @@ class DecoderBlock(nn.Module):
         super().__init__()
 
         self.block = nn.Sequential(
-            Conv2dReLU(in_channels, in_channels // 4, kernel_size=1,
-                       use_batchnorm=use_batchnorm),
-            TransposeX2(in_channels // 4, in_channels // 4,
-                        use_batchnorm=use_batchnorm),
-            Conv2dReLU(in_channels // 4, out_channels, kernel_size=1,
-                       use_batchnorm=use_batchnorm),
+            Conv2dReLU(in_channels, in_channels // 4, kernel_size=1, use_batchnorm=use_batchnorm),
+            TransposeX2(in_channels // 4, in_channels // 4, use_batchnorm=use_batchnorm),
+            Conv2dReLU(in_channels // 4, out_channels, kernel_size=1, use_batchnorm=use_batchnorm),
         )
 
     def forward(self, x):
@@ -57,18 +51,12 @@ class LinknetDecoder(Model):
 
         in_channels = encoder_channels
 
-        self.layer1 = DecoderBlock(in_channels[0], in_channels[1],
-                                   use_batchnorm=use_batchnorm)
-        self.layer2 = DecoderBlock(in_channels[1], in_channels[2],
-                                   use_batchnorm=use_batchnorm)
-        self.layer3 = DecoderBlock(in_channels[2], in_channels[3],
-                                   use_batchnorm=use_batchnorm)
-        self.layer4 = DecoderBlock(in_channels[3], in_channels[4],
-                                   use_batchnorm=use_batchnorm)
-        self.layer5 = DecoderBlock(in_channels[4], prefinal_channels,
-                                   use_batchnorm=use_batchnorm)
-        self.final_conv = nn.Conv2d(prefinal_channels, final_channels,
-                                    kernel_size=(1, 1))
+        self.layer1 = DecoderBlock(in_channels[0], in_channels[1], use_batchnorm=use_batchnorm)
+        self.layer2 = DecoderBlock(in_channels[1], in_channels[2], use_batchnorm=use_batchnorm)
+        self.layer3 = DecoderBlock(in_channels[2], in_channels[3], use_batchnorm=use_batchnorm)
+        self.layer4 = DecoderBlock(in_channels[3], in_channels[4], use_batchnorm=use_batchnorm)
+        self.layer5 = DecoderBlock(in_channels[4], prefinal_channels, use_batchnorm=use_batchnorm)
+        self.final_conv = nn.Conv2d(prefinal_channels, final_channels, kernel_size=(1, 1))
 
         self.initialize()
 

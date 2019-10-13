@@ -4,27 +4,21 @@ from ..encoders import get_encoder
 
 
 class Linknet(EncoderDecoder):
-    """Linknet_ is a fully convolution neural
-    network for fast image semantic segmentation
+    """Linknet_ is a fully convolution neural network for fast image semantic segmentation
 
     Note:
         This implementation by default has 4 skip connections (original - 3).
 
     Args:
-        encoder_name: name of classification model
-        (without last dense layers) used as feature
+        encoder_name: name of classification model (without last dense layers) used as feature
             extractor to build segmentation model.
-        encoder_weights: one of ``None`` (random initialization),
-         ``imagenet`` (pre-training on ImageNet).
-        decoder_use_batchnorm: if ``True``, ``BatchNormalisation``
-         layer between ``Conv2D`` and ``Activation`` layers
-            is used.
-        classes: a number of classes for output
-         (output shape - ``(batch, classes, h, w)``).
-        activation: activation function used in
-        ``.predict(x)`` method for inference.
+        encoder_weights: one of ``None`` (random initialization), ``imagenet`` (pre-training on ImageNet).
+        decoder_use_batchnorm: if ``True``, ``BatchNormalisation`` layer between ``Conv2D`` and ``Activation`` layers
+            is used. If 'inplace' InplaceABN will be used, allows to decrease memory consumption.
+            One of [True, False, 'inplace']
+        classes: a number of classes for output (output shape - ``(batch, classes, h, w)``).
+        activation: activation function used in ``.predict(x)`` method for inference.
             One of [``sigmoid``, ``softmax``, callable, None]
-
     Returns:
         ``torch.nn.Module``: **Linknet**
 
